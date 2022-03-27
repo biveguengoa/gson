@@ -312,11 +312,12 @@ public class JsonWriterTest extends TestCase {
     };
 
     for (String validNumber : validNumbers) {
+      StringWriter testStringWriter = new StringWriter();
+      JsonWriter testJsonWriter = new JsonWriter(testStringWriter);
+      testJsonWriter.value(new LazilyParsedNumber(validNumber));
+      testJsonWriter.close();
 
-      jsonWriter.value(new LazilyParsedNumber(validNumber));
-      jsonWriter.close();
-
-      assertEquals(validNumber, stringWriter.toString());
+      assertEquals(validNumber, testStringWriter.toString());
     }
   }
 

@@ -347,13 +347,11 @@ public class CollectionTest extends TestCase {
   private static int[] toIntArray(Collection collection) {
     int[] ints = new int[collection.size()];
     int i = 0;
-    for (Iterator iterator = collection.iterator(); iterator.hasNext(); ++i) {
-      Object obj = iterator.next();
-      if (obj instanceof Integer) {
-        ints[i] = ((Integer)obj).intValue();
-      } else if (obj instanceof Long) {
-        ints[i] = ((Long)obj).intValue();
-      }
+    Iterator iterator = collection.iterator();
+    while (iterator.hasNext()) {
+      Number obj = (Number) iterator.next();
+      ints[i] = obj.intValue();
+      ++i;
     }
     return ints;
   }

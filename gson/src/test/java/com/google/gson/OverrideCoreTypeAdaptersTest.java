@@ -26,7 +26,7 @@ import junit.framework.TestCase;
  * @author Jesse Wilson
  */
 public class OverrideCoreTypeAdaptersTest extends TestCase {
-  private static final TypeAdapter<Boolean> booleanAsIntAdapter = new TypeAdapter<Boolean>() {
+  private static final TypeAdapter<Boolean> BOOLEAN_TYPE_ADAPTER = new TypeAdapter<Boolean>() {
     @Override public void write(JsonWriter out, Boolean value) throws IOException {
       out.value(value ? 1 : 0);
     }
@@ -47,7 +47,7 @@ public class OverrideCoreTypeAdaptersTest extends TestCase {
 
   public void testOverrideWrapperBooleanAdapter() {
     Gson gson = new GsonBuilder()
-        .registerTypeAdapter(Boolean.class, booleanAsIntAdapter)
+        .registerTypeAdapter(Boolean.class, BOOLEAN_TYPE_ADAPTER)
         .create();
     assertEquals("true", gson.toJson(true, boolean.class));
     assertEquals("1", gson.toJson(true, Boolean.class));
@@ -58,7 +58,7 @@ public class OverrideCoreTypeAdaptersTest extends TestCase {
 
   public void testOverridePrimitiveBooleanAdapter() {
     Gson gson = new GsonBuilder()
-        .registerTypeAdapter(boolean.class, booleanAsIntAdapter)
+        .registerTypeAdapter(boolean.class, BOOLEAN_TYPE_ADAPTER)
         .create();
     assertEquals("1", gson.toJson(true, boolean.class));
     assertEquals("true", gson.toJson(true, Boolean.class));

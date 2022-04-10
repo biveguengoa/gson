@@ -380,33 +380,7 @@ public final class JavaWriter {
    * Emit modifier names.
    */
   private void modifiers(int modifiers) throws IOException {
-    if ((modifiers & Modifier.PUBLIC) != 0) {
-      out.write("public ");
-    }
-    if ((modifiers & Modifier.PRIVATE) != 0) {
-      out.write("private ");
-    }
-    if ((modifiers & Modifier.PROTECTED) != 0) {
-      out.write("protected ");
-    }
-    if ((modifiers & Modifier.STATIC) != 0) {
-      out.write("static ");
-    }
-    if ((modifiers & Modifier.FINAL) != 0) {
-      out.write("final ");
-    }
-    if ((modifiers & Modifier.ABSTRACT) != 0) {
-      out.write("abstract ");
-    }
-    if ((modifiers & Modifier.SYNCHRONIZED) != 0) {
-      out.write("synchronized ");
-    }
-    if ((modifiers & Modifier.TRANSIENT) != 0) {
-      out.write("transient ");
-    }
-    if ((modifiers & Modifier.VOLATILE) != 0) {
-      out.write("volatile ");
-    }
+    out.write(Modifier.toString(modifiers));
   }
 
   private void indent() throws IOException {

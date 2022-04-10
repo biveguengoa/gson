@@ -32,15 +32,6 @@ public final class JsonNull extends JsonElement {
   public static final JsonNull INSTANCE = new JsonNull();
 
   /**
-   * Creates a new JsonNull object.
-   * Deprecated since Gson version 1.8. Use {@link #INSTANCE} instead
-   */
-  @Deprecated
-  public JsonNull() {
-    // Do nothing
-  }
-
-  /**
    * Returns the same instance since it is an immutable value
    * @since 2.8.2
    */

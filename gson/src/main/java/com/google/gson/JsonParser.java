@@ -32,9 +32,6 @@ import com.google.gson.stream.MalformedJsonException;
  * @since 1.3
  */
 public final class JsonParser {
-  /** @deprecated No need to instantiate this class, use the static methods instead. */
-  @Deprecated
-  public JsonParser() {}
 
   /**
    * Parses the specified JSON string into a parse tree

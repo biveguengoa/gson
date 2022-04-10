@@ -36,7 +36,7 @@ public class OverrideCoreTypeAdaptersTest extends TestCase {
     }
   };
 
-  private static final TypeAdapter<String> swapCaseStringAdapter = new TypeAdapter<String>() {
+  private static final TypeAdapter<String> SWAP_CASE_STRING_ADAPTER = new TypeAdapter<String>() {
     @Override public void write(JsonWriter out, String value) throws IOException {
       out.value(value.toUpperCase(Locale.US));
     }
@@ -69,7 +69,7 @@ public class OverrideCoreTypeAdaptersTest extends TestCase {
 
   public void testOverrideStringAdapter() {
     Gson gson = new GsonBuilder()
-        .registerTypeAdapter(String.class, swapCaseStringAdapter)
+        .registerTypeAdapter(String.class, SWAP_CASE_STRING_ADAPTER)
         .create();
     assertEquals("\"HELLO\"", gson.toJson("Hello", String.class));
     assertEquals("hello", gson.fromJson("\"Hello\"", String.class));

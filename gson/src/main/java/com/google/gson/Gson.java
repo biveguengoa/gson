@@ -899,11 +899,9 @@ public final class Gson {
   @SuppressWarnings("unchecked")
   public <T> T fromJson(String json, Type typeOfT) throws JsonSyntaxException {
     if (json == null) {
-      return null;
+      throw new NullPointerException();
     }
-    StringReader reader = new StringReader(json);
-    T target = (T) fromJson(reader, typeOfT);
-    return target;
+    return fromJson(new StringReader(json),typeOfT);
   }
 
   /**
@@ -953,7 +951,7 @@ public final class Gson {
   @SuppressWarnings("unchecked")
   public <T> T fromJson(Reader json, Type typeOfT) throws JsonIOException, JsonSyntaxException {
     JsonReader jsonReader = newJsonReader(json);
-    T object = (T) fromJson(jsonReader, typeOfT);
+    T object = fromJson(jsonReader, typeOfT);
     assertFullConsumption(object, jsonReader);
     return object;
   }
@@ -1059,7 +1057,7 @@ public final class Gson {
     if (json == null) {
       return null;
     }
-    return (T) fromJson(new JsonTreeReader(json), typeOfT);
+    return fromJson(new JsonTreeReader(json), typeOfT);
   }
 
   static class FutureTypeAdapter<T> extends TypeAdapter<T> {
